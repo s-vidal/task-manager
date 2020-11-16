@@ -8,15 +8,27 @@ const TasksDashBoard = ({user, dataHandler}) => {
   const [doneTasks, setDoneTasks] = useState([]);
 
   useEffect(() => {
-    dataHandler.getUserTasksSnapshot(user, "to-do", (data) => {
-      console.log(data);
-      setTasks(data);
-    });
+    const unsubscribeTask = dataHandler.getUserTasksSnapshot(
+      user,
+      "to-do",
+      (data) => {
+        console.log(data);
+        setTasks(data);
+      }
+    );
 
-    dataHandler.getUserTasksSnapshot(user, "done", (data) => {
-      console.log(data);
-      setDoneTasks(data);
-    });
+    const unsubscribeDone = dataHandler.getUserTasksSnapshot(
+      user,
+      "done",
+      (data) => {
+        console.log(data);
+        setDoneTasks(data);
+      }
+    );
+    return () => {
+      unsubscribeTask();
+      unsubscribeDone();
+    };
   }, [user, dataHandler]);
 
   return (
