@@ -1,7 +1,7 @@
 import React from "react";
 import "./UserNav.css";
 
-const UserNav = ({usersData, setUser}) => {
+const UserNav = ({usersData, currentUser, setUser}) => {
   return (
     <div>
       <ul className="nav justify-content-center">
@@ -9,13 +9,25 @@ const UserNav = ({usersData, setUser}) => {
           usersData.map((user, index) => (
             <li
               key={index}
-              className="d-flex nav-item user-item rounded align-items-center cursor-pointer"
+              className={
+                currentUser === user["name"]
+                  ? "d-flex nav-item selected-user-item rounded align-items-center cursor-pointer"
+                  : "d-flex nav-item user-item rounded align-items-center cursor-pointer"
+              }
               onClick={() => {
                 setUser(user["name"]);
               }}
             >
               <a className="nav-link  ">
-                <p className="text-white m-0">{user["name"]}</p>
+                <p
+                  className={
+                    currentUser === user["name"]
+                      ? "text-white m-0"
+                      : "text-white  m-0"
+                  }
+                >
+                  {user["name"]}
+                </p>
               </a>
             </li>
           ))}

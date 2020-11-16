@@ -1,6 +1,7 @@
 import React from "react";
 import "./TasksDashboard.css";
 import Task from "./Task";
+import TaskModal from "./TaskModal";
 
 const TasksDashBoard = ({user}) => {
   return (
@@ -15,13 +16,21 @@ const TasksDashBoard = ({user}) => {
         <div className="row mt-5">
           <div className="col-6 to-do text-center pr-5">
             <div className="row">
-              <h4 className="font-weight-bold">To-Do</h4>
-              <button
-                className=" btn btn-outline-secondary rounded-pill"
-                style={{marginLeft: "10rem"}}
-              >
-                + New Task
-              </button>
+              <div className="col-6">
+                <h4 className="font-weight-bold">To Do</h4>
+              </div>
+              <div className="col6">
+                <button
+                  type="button"
+                  className=" btn btn-outline-secondary rounded-pill"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
+                  + New Task
+                </button>
+              </div>
+
+              <TaskModal />
             </div>
             <div className="row">
               <Task />

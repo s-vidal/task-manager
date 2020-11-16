@@ -22,7 +22,7 @@ const Dashboard = () => {
 
   return (
     <div className="d-flex">
-      <SideMenu usersData={usersData} setUser={setUser} />
+      <SideMenu usersData={usersData} user={user} setUser={setUser} />
       <TasksDashBoard user={user} />
     </div>
   );
