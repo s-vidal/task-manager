@@ -42,7 +42,7 @@ class DataHandler {
       .add({task: task})
       .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
-        return docRef;
+        return docRef
       });
   };
 }

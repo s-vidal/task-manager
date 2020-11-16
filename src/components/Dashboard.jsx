@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from "react";
 
 import SideMenu from "./SideMenu";
-import Tasks from "./Tasks";
+import TasksDashBoard from "./TasksDashboard";
 import DataHandler from "../lib/DataHandler";
 
-const DashBoard = () => {
+const Dashboard = () => {
   const [dataHandler] = useState(new DataHandler());
   const [usersData, setUsersData] = useState([]);
   const [user, setUser] = useState("levy");
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     dataHandler.getDataSnapShot((data) => {
@@ -15,16 +16,16 @@ const DashBoard = () => {
     });
 
     dataHandler.getUserCollectionSnapshot(user, (data) => {
-      console.log(data);
+      setTasks(data);
     });
   }, [user]);
 
   return (
     <div className="d-flex">
       <SideMenu usersData={usersData} setUser={setUser} />
-      <Tasks user={user} />
+      <TasksDashBoard user={user} />
     </div>
   );
 };
 
-export default DashBoard;
+export default Dashboard;

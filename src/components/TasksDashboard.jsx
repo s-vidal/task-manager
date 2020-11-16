@@ -1,11 +1,11 @@
 import React from "react";
-import "./Tasks.css";
+import "./TasksDashboard.css";
 import Task from "./Task";
 
-const Tasks = ({user}) => {
+const TasksDashBoard = ({user}) => {
   return (
     <div className="tasks">
-      <div className="container">
+      <div className="tasks-container">
         <div className="row mt-5">
           <h2>Task-Manager</h2>
         </div>
@@ -13,9 +13,15 @@ const Tasks = ({user}) => {
           <h5 className="text-secondary">Welcome: {user}</h5>
         </div>
         <div className="row mt-5">
-          <div className="col-6 to-do text-center">
+          <div className="col-6 to-do text-center pr-5">
             <div className="row">
               <h4 className="font-weight-bold">To-Do</h4>
+              <button
+                className=" btn btn-outline-secondary rounded-pill"
+                style={{marginLeft: "10rem"}}
+              >
+                + New Task
+              </button>
             </div>
             <div className="row">
               <Task />
@@ -38,4 +44,4 @@ const Tasks = ({user}) => {
   );
 };
 
-export default Tasks;
+export default TasksDashBoard;
