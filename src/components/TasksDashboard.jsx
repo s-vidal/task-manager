@@ -5,11 +5,17 @@ import TaskModal from "./TaskModal";
 
 const TasksDashBoard = ({user, dataHandler}) => {
   const [tasks, setTasks] = useState([]);
+  const [doneTasks, setDoneTasks] = useState([]);
 
   useEffect(() => {
-    dataHandler.getUserCollectionSnapshot(user, (data) => {
+    dataHandler.getUserTodosSnapshot(user, (data) => {
       console.log(data);
       setTasks(data);
+    });
+
+    dataHandler.getUserDoneTodosSnapshot(user, (data) => {
+      console.log(data);
+      setDoneTasks(data);
     });
   }, [user, dataHandler]);
 
@@ -38,8 +44,7 @@ const TasksDashBoard = ({user, dataHandler}) => {
                   + New Task
                 </button>
               </div>
-
-              <TaskModal />
+              <TaskModal user={user} dataHandler={dataHandler} />
             </div>
             <div className="row">
               {tasks.length > 0 &&
@@ -53,10 +58,10 @@ const TasksDashBoard = ({user, dataHandler}) => {
               <h4 className="font-weight-bold">Done</h4>
             </div>
             <div className="row">
-              <Task />
-            </div>
-            <div className="row">
-              <Task />
+              {doneTasks.length > 0 &&
+                doneTasks.map((task, index) => (
+                  <Task key={index} text={task["task"]} />
+                ))}
             </div>
           </div>
         </div>

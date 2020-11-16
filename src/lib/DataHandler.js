@@ -18,10 +18,21 @@ class DataHandler {
     return unsubscribe;
   };
 
-  getUserCollectionSnapshot = (user, callBack) => {
+  getUserTodosSnapshot = (user, callBack) => {
     const unsubscribe = this._usersCollection
       .doc(user)
       .collection("to-do")
+      .onSnapshot((update) => {
+        const data = update.docs.map((doc) => doc.data());
+        callBack(data);
+      });
+    return unsubscribe;
+  };
+
+  getUserDoneTodosSnapshot = (user, callBack) => {
+    const unsubscribe = this._usersCollection
+      .doc(user)
+      .collection("done")
       .onSnapshot((update) => {
         const data = update.docs.map((doc) => doc.data());
         callBack(data);

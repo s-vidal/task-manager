@@ -1,6 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
+import Task from "./Task";
 
-const TaskModal = () => {
+const TaskModal = ({user, dataHandler}) => {
+  const [newTask, setNewTask] = useState("");
+
   return (
     <>
       <div
@@ -29,6 +32,10 @@ const TaskModal = () => {
             </div>
             <div className="modal-body border-0 input-group">
               <textarea
+                onChange={(e) => {
+                  setNewTask(e.target.value);
+                }}
+                value={newTask}
                 className="form-control"
                 placeholder="task.."
                 aria-label="With textarea"
@@ -36,7 +43,12 @@ const TaskModal = () => {
             </div>
             <div className="modal-footer border-0">
               <button
+                onClick={() => {
+                  dataHandler.addTaskByUser(user, newTask);
+                  setNewTask("");
+                }}
                 type="button"
+                data-dismiss="modal"
                 className="btn btn-outline-secondary rounded-pill"
               >
                 Add
