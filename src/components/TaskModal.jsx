@@ -28,12 +28,11 @@ const TaskModal = () => {
               </button>
             </div>
             <div className="modal-body border-0 input-group">
-              <input
-                className=" form-control"
-                type="text"
-                placeholder=" Task.."
-                style={{minHeigh: "500px"}}
-              />
+              <textarea
+                className="form-control"
+                placeholder="task.."
+                aria-label="With textarea"
+              ></textarea>
             </div>
             <div className="modal-footer border-0">
               <button
