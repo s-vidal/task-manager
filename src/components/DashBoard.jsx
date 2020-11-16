@@ -1,22 +1,29 @@
-import React, {useEffect, useState} from 'react';
-import {usersCollection} from "../firebase"
+import React, {useEffect, useState} from "react";
+import {usersCollection} from "../firebase";
+import UsersDropdown from "./UsersDropdown";
+import DataHandler from "../lib/DataHandler";
 
 const DashBoard = () => {
-    const [usersData, setUsersData] = useState([])
+  const [dataHandler] = useState(new DataHandler());
+  const [usersData, setUsersData] = useState([]);
+  const [user, setUser] = useState("levy");
 
-    useEffect(() => {
-        const unsubscribe = usersCollection.onSnapshot(update => {
-            const data = update.docs.map(doc => doc.data());
-            setUsersData(data)
-        })
-        return () => unsubscribe()
-    }, [])
+  useEffect(() => {
+    dataHandler.getDataSnapShot((data) => {
+      setUsersData(data);
+    });
 
-return ( <div className="m-5">
-            <div>
-            {usersData && usersData.map(user => <h1>{user.name}</h1>)}
-            </div>
-    </div> );
-}
- 
+    dataHandler.getUserCollectionSnapshot(user, (data) => {
+      console.log(data);
+    });
+  }, [user]);
+
+  return (
+    <div className="m-5">
+      <h1>{user}</h1>
+      <UsersDropdown usersData={usersData} setUser={setUser} />
+    </div>
+  );
+};
+
 export default DashBoard;
