@@ -1,14 +1,14 @@
 import React, {useState} from "react";
 
-const TaskModal = ({user, dataHandler}) => {
-  const [newTask, setNewTask] = useState("");
+const EditTaskModal = ({user, taskId, collection, text, dataHandler}) => {
+  const [newTask, setNewTask] = useState();
 
   return (
     <>
       <div
         className="modal fade"
-        style={{paddingTop: "20rem", paddingLeft: "5rem"}}
-        id="exampleModal"
+        style={{marginTop: "20rem", marginLeft: "5rem"}}
+        id={taskId}
         tabIndex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"
@@ -18,9 +18,12 @@ const TaskModal = ({user, dataHandler}) => {
           <div className="modal-content rounded shadow">
             <div className="modal-header border-0">
               <h5 className="modal-title" id="exampleModalLabel">
-                New Task:
+                Edit Task: {text}
               </h5>
               <button
+                onClick={() => {
+                  setNewTask("");
+                }}
                 type="button"
                 className="close"
                 data-dismiss="modal"
@@ -43,14 +46,14 @@ const TaskModal = ({user, dataHandler}) => {
             <div className="modal-footer border-0">
               <button
                 onClick={() => {
-                  dataHandler.addTaskByUser(user, newTask);
+                  dataHandler.editTaskById(user, taskId, collection, newTask);
                   setNewTask("");
                 }}
                 type="button"
                 data-dismiss="modal"
                 className="btn btn-outline-secondary rounded-pill"
               >
-                Add
+                Save Changes
               </button>
             </div>
           </div>
@@ -60,4 +63,4 @@ const TaskModal = ({user, dataHandler}) => {
   );
 };
 
-export default TaskModal;
+export default EditTaskModal;

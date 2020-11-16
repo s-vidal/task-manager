@@ -1,7 +1,8 @@
 import React from "react";
 import "./Task.css";
+import EditTaskModal from "./EditTaskModal";
 
-const Task = ({text}) => {
+const Task = ({collection, taskId, user, text, dataHandler}) => {
   return (
     <div className="task shadow rounded">
       <div className="row" style={{marginTop: "3.5rem"}}>
@@ -10,22 +11,47 @@ const Task = ({text}) => {
           {text && <h5>{text}</h5>}
         </div>
         <div className="col-1">
-          <svg
-            width="1.5em"
-            height="1.5em"
-            viewBox="0 0 16 16"
-            className="bi bi-check2 cursor-pointer"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
-            />
-          </svg>
+          {collection == "done" && (
+            <svg
+              onClick={() => {
+                dataHandler.markDoneTaskAsTodo(user, taskId, text);
+              }}
+              width="1.5em"
+              height="1.5em"
+              viewBox="0 0 16 16"
+              className="bi bi-arrow-bar-left cursor-pointer"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5zM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5z"
+              />
+            </svg>
+          )}
+          {collection == "to-do" && (
+            <svg
+              onClick={() => {
+                dataHandler.markTaskAsDone(user, taskId, text);
+              }}
+              width="1.5em"
+              height="1.5em"
+              viewBox="0 0 16 16"
+              className="bi bi-check2 cursor-pointer"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"
+              />
+            </svg>
+          )}
         </div>
         <div className="col-1">
           <svg
+            data-toggle="modal"
+            data-target={`#${taskId}`}
             width="1.5em"
             height="1.5em"
             viewBox="0 0 16 16"
@@ -38,9 +64,20 @@ const Task = ({text}) => {
               d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"
             />
           </svg>
+          <EditTaskModal
+            user={user}
+            taskId={taskId}
+            collection={collection}
+            text={text}
+            dataHandler={dataHandler}
+          />
         </div>
         <div className="col-1">
           <svg
+            onClick={() => {
+              console.log(user);
+              dataHandler.deleteTaskById(user, taskId, collection);
+            }}
             width="1.5em"
             height="1.5em"
             viewBox="0 0 16 16"

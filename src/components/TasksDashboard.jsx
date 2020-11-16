@@ -8,12 +8,12 @@ const TasksDashBoard = ({user, dataHandler}) => {
   const [doneTasks, setDoneTasks] = useState([]);
 
   useEffect(() => {
-    dataHandler.getUserTodosSnapshot(user, (data) => {
+    dataHandler.getUserTasksSnapshot(user, "to-do", (data) => {
       console.log(data);
       setTasks(data);
     });
 
-    dataHandler.getUserDoneTodosSnapshot(user, (data) => {
+    dataHandler.getUserTasksSnapshot(user, "done", (data) => {
       console.log(data);
       setDoneTasks(data);
     });
@@ -49,7 +49,14 @@ const TasksDashBoard = ({user, dataHandler}) => {
             <div className="row">
               {tasks.length > 0 &&
                 tasks.map((task, index) => (
-                  <Task key={index} text={task["task"]} />
+                  <Task
+                    collection="to-do"
+                    taskId={task["id"]}
+                    user={user}
+                    key={index}
+                    text={task["task"]}
+                    dataHandler={dataHandler}
+                  />
                 ))}
             </div>
           </div>
@@ -60,7 +67,14 @@ const TasksDashBoard = ({user, dataHandler}) => {
             <div className="row">
               {doneTasks.length > 0 &&
                 doneTasks.map((task, index) => (
-                  <Task key={index} text={task["task"]} />
+                  <Task
+                    collection="done"
+                    taskId={task["id"]}
+                    user={user}
+                    key={index}
+                    text={task["task"]}
+                    dataHandler={dataHandler}
+                  />
                 ))}
             </div>
           </div>
