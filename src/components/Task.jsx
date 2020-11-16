@@ -1,11 +1,14 @@
 import React from "react";
 import "./Task.css";
 
-const Task = () => {
+const Task = ({text}) => {
   return (
     <div className="task shadow rounded">
-      <div className="row mt-5">
-        <div className="offset-9"></div>
+      <div className="row" style={{marginTop: "3.5rem"}}>
+        <div className="offset-1"></div>
+        <div className="col-8 d-flex justify-content-start">
+          {text && <h5>{text}</h5>}
+        </div>
         <div className="col-1">
           <svg
             width="1.5em"

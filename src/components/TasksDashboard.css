@@ -9,6 +9,12 @@
   min-height: 60vh;
 }
 
+.custom-btn {
+  /* background-color: rgba(4, 4, 255, 0.274) !important; */
+  background-color: rgba(4, 4, 255, 0.335) !important;
+  color: white;
+}
+
 .tasks-container {
-  padding: 0 10rem 0 10rem;
+  padding: 0 10rem 10rem 10rem;
 }

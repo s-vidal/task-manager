@@ -8,22 +8,18 @@ const Dashboard = () => {
   const [dataHandler] = useState(new DataHandler());
   const [usersData, setUsersData] = useState([]);
   const [user, setUser] = useState("levy");
-  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     dataHandler.getDataSnapShot((data) => {
+      console.log(data);
       setUsersData(data);
     });
-
-    dataHandler.getUserCollectionSnapshot(user, (data) => {
-      setTasks(data);
-    });
-  }, [user]);
+  }, [user, dataHandler]);
 
   return (
     <div className="d-flex">
       <SideMenu usersData={usersData} user={user} setUser={setUser} />
-      <TasksDashBoard user={user} />
+      <TasksDashBoard user={user} dataHandler={dataHandler} />
     </div>
   );
 };

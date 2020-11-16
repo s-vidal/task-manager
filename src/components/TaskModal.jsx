@@ -5,7 +5,7 @@ const TaskModal = () => {
     <>
       <div
         className="modal fade"
-        style={{marginTop: "20rem"}}
+        style={{marginTop: "20rem", marginLeft: "5rem"}}
         id="exampleModal"
         tabIndex="-1"
         role="dialog"
@@ -13,7 +13,7 @@ const TaskModal = () => {
         aria-hidden="true"
       >
         <div className="modal-dialog" role="document">
-          <div className="modal-content">
+          <div className="modal-content rounded shadow">
             <div className="modal-header border-0">
               <h5 className="modal-title" id="exampleModalLabel">
                 New Task:

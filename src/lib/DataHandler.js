@@ -22,15 +22,9 @@ class DataHandler {
     const unsubscribe = this._usersCollection
       .doc(user)
       .collection("to-do")
-      .get()
-      .then((querySnapshot) => {
-        let docs = [];
-        querySnapshot.forEach((doc) => {
-          let data = doc.data();
-          data["id"] = doc.id;
-          docs.push(data);
-        });
-        callBack(docs);
+      .onSnapshot((update) => {
+        const data = update.docs.map((doc) => doc.data());
+        callBack(data);
       });
     return unsubscribe;
   };
@@ -42,7 +36,7 @@ class DataHandler {
       .add({task: task})
       .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);
-        return docRef
+        return docRef;
       });
   };
 }

@@ -1,5 +1,5 @@
 .menu {
   background-color: rgba(4, 4, 255, 0.274);
-  height: 100vh;
+  min-height: 100vh;
   width: 15vw;
 }
