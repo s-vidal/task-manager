@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {usersCollection} from "../firebase";
-import UsersDropdown from "./UsersDropdown";
+
+import SideMenu from "./SideMenu";
+import Tasks from "./Tasks";
 import DataHandler from "../lib/DataHandler";
 
 const DashBoard = () => {
@@ -19,9 +20,9 @@ const DashBoard = () => {
   }, [user]);
 
   return (
-    <div className="m-5">
-      <h1>{user}</h1>
-      <UsersDropdown usersData={usersData} setUser={setUser} />
+    <div className="d-flex">
+      <SideMenu usersData={usersData} setUser={setUser} />
+      <Tasks user={user} />
     </div>
   );
 };
