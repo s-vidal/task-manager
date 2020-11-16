@@ -1,13 +1,15 @@
 import React from "react";
 import "./SideMenu.css";
-import UsersDropdown from "./UsersDropdown";
+import UserNav from "./UserNav";
 
 const SideMenu = ({usersData, setUser}) => {
   return (
     <div className="menu">
       <div className="container">
-        <div className="row mt-5 d-flex justify-content-center">
-          <UsersDropdown usersData={usersData} setUser={setUser} />
+        <div className="row" style={{marginTop: "11rem"}}>
+          <div className="col-12">
+            <UserNav usersData={usersData} setUser={setUser} />
+          </div>
         </div>
       </div>
     </div>
