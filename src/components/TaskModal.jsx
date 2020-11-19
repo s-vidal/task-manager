@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import "./TaskModal.css";
 import * as dataHandler from "../lib/DataHandler";
 
 const TaskModal = ({user}) => {
@@ -41,17 +42,17 @@ const TaskModal = ({user}) => {
                 aria-label="With textarea"
               ></textarea>
             </div>
-            <div className="modal-footer border-0">
+            <div className="modal-footer border-0 p-0">
               <button
+                className="btn btn-secondary add-task-btn m-0"
                 onClick={() => {
                   dataHandler.addTaskByUser(user, newTask);
                   setNewTask("");
                 }}
                 type="button"
                 data-dismiss="modal"
-                className="btn btn-outline-secondary rounded-pill"
               >
-                Add
+                <h5>Add</h5>
               </button>
             </div>
           </div>

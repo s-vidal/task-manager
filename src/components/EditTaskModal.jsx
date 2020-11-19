@@ -13,14 +13,14 @@ const EditTaskModal = ({user, taskId, collection, text}) => {
     <>
       <div
         className="modal fade"
-        style={{marginTop: "20rem", marginLeft: "5rem"}}
+        style={{paddingTop: "20rem", paddingLeft: "5rem"}}
         id={taskId}
         tabIndex="-1"
         role="dialog"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog" role="document">
+        <div className="modal-dialog editModal" role="document">
           <div className="modal-content rounded shadow">
             <div className="modal-header border-0">
               <h5 className="modal-title" id="exampleModalLabel">
@@ -50,7 +50,7 @@ const EditTaskModal = ({user, taskId, collection, text}) => {
                 aria-label="With textarea"
               ></textarea>
             </div>
-            <div className="modal-footer border-0">
+            <div className="modal-footer border-0 p-0 m-0">
               <button
                 onClick={() => {
                   dataHandler.editTaskById(user, taskId, collection, newTask);
@@ -58,9 +58,9 @@ const EditTaskModal = ({user, taskId, collection, text}) => {
                 }}
                 type="button"
                 data-dismiss="modal"
-                className="btn btn-outline-secondary rounded-pill"
+                className="btn btn-secondary save-task-btn m-0"
               >
-                Save Changes
+                <h5>Save Changes</h5>
               </button>
             </div>
           </div>
