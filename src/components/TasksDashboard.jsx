@@ -30,7 +30,7 @@ const TasksDashBoard = ({user}) => {
       unsubscribeTask();
       unsubscribeDone();
     };
-  }, [user, dataHandler]);
+  }, [user]);
 
   return (
     <div className="tasks">
