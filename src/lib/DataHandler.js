@@ -1,88 +1,80 @@
 import {usersCollection} from "../firebase";
 
-class DataHandler {
-  constructor() {
-    this._usersCollection = usersCollection;
-  }
+export const getUserTasks = (user) => {
+  const userTaks = usersCollection.where("name", "==", user).get();
+  return userTaks;
+};
 
-  getUserTasks = (user) => {
-    const userTaks = this._usersCollection.where("name", "==", user).get();
-    return userTaks;
-  };
+export const getDataSnapShot = (callBack) => {
+  const unsubscribe = usersCollection.onSnapshot((update) => {
+    const data = update.docs.map((doc) => doc.data());
+    callBack(data);
+  });
+  return unsubscribe;
+};
 
-  getDataSnapShot = (callBack) => {
-    const unsubscribe = this._usersCollection.onSnapshot((update) => {
-      const data = update.docs.map((doc) => doc.data());
+export const getUserTasksSnapshot = (user, collection = "to-do", callBack) => {
+  const unsubscribe = usersCollection
+    .doc(user)
+    .collection(collection)
+    .onSnapshot((update) => {
+      const data = update.docs.map((doc) => {
+        const todo = doc.data();
+        todo["id"] = doc.id;
+        return todo;
+      });
       callBack(data);
     });
-    return unsubscribe;
-  };
+  return unsubscribe;
+};
 
-  getUserTasksSnapshot = (user, collection = "to-do", callBack) => {
-    const unsubscribe = this._usersCollection
-      .doc(user)
-      .collection(collection)
-      .onSnapshot((update) => {
-        const data = update.docs.map((doc) => {
-          const todo = doc.data();
-          todo["id"] = doc.id;
-          return todo;
-        });
-        callBack(data);
-      });
-    return unsubscribe;
-  };
+export const addTaskByUser = (user, task, collection = "to-do") => {
+  usersCollection
+    .doc(user)
+    .collection(collection)
+    .add({task: task})
+    .then(function (docRef) {
+      console.log("Document written with ID: ", docRef.id);
+      return docRef;
+    });
+};
 
-  addTaskByUser = (user, task, collection = "to-do") => {
-    this._usersCollection
-      .doc(user)
-      .collection(collection)
-      .add({task: task})
-      .then(function (docRef) {
-        console.log("Document written with ID: ", docRef.id);
-        return docRef;
-      });
-  };
+export const deleteTaskById = (user, taskId, collection = "to-do") => {
+  usersCollection
+    .doc(user)
+    .collection(collection)
+    .doc(taskId)
+    .delete()
+    .then(function () {
+      console.log("Document successfully deleted!");
+    })
+    .catch(function (error) {
+      console.error("Error removing document: ", error);
+    });
+};
 
-  deleteTaskById = (user, taskId, collection = "to-do") => {
-    this._usersCollection
-      .doc(user)
-      .collection(collection)
-      .doc(taskId)
-      .delete()
-      .then(function () {
-        console.log("Document successfully deleted!");
-      })
-      .catch(function (error) {
-        console.error("Error removing document: ", error);
-      });
-  };
+export const markTaskAsDone = (user, taskId, taskText) => {
+  deleteTaskById(user, taskId, "to-do");
+  addTaskByUser(user, taskText, "done");
+};
 
-  markTaskAsDone = (user, taskId, taskText) => {
-    this.deleteTaskById(user, taskId, "to-do");
-    this.addTaskByUser(user, taskText, "done");
-  };
+export const markDoneTaskAsTodo = (user, taskId, taskText) => {
+  deleteTaskById(user, taskId, "done");
+  addTaskByUser(user, taskText, "to-do");
+};
 
-  markDoneTaskAsTodo = (user, taskId, taskText) => {
-    this.deleteTaskById(user, taskId, "done");
-    this.addTaskByUser(user, taskText, "to-do");
-  };
-
-  editTaskById = (user, taskId, collection = "to-do", newText) => {
-    this._usersCollection
-      .doc(user)
-      .collection(collection)
-      .doc(taskId)
-      .update({
-        task: newText,
-      })
-      .then(function () {
-        console.log("Document successfully updated!");
-      })
-      .catch(function (error) {
-        console.error("Error updating document: ", error);
-      });
-  };
-}
-
-export default DataHandler;
+export const editTaskById = (user, taskId, collection = "to-do", newText) => {
+  usersCollection
+    .doc(user)
+    .collection(collection)
+    .doc(taskId)
+    .update({
+      task: newText,
+    })
+    .then(function () {
+      console.log("Document successfully updated!");
+    })
+    .catch(function (error) {
+      console.error("Error updating document: ", error);
+    });
+};

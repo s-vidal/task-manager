@@ -2,8 +2,9 @@ import React, {useEffect, useState} from "react";
 import "./TasksDashboard.css";
 import Task from "./Task";
 import TaskModal from "./TaskModal";
+import * as dataHandler from "../lib/DataHandler";
 
-const TasksDashBoard = ({user, dataHandler}) => {
+const TasksDashBoard = ({user}) => {
   const [tasks, setTasks] = useState([]);
   const [doneTasks, setDoneTasks] = useState([]);
 
@@ -56,7 +57,7 @@ const TasksDashBoard = ({user, dataHandler}) => {
                   + New Task
                 </button>
               </div>
-              <TaskModal user={user} dataHandler={dataHandler} />
+              <TaskModal user={user} />
             </div>
             <div className="row">
               {tasks.length > 0 &&
@@ -67,7 +68,6 @@ const TasksDashBoard = ({user, dataHandler}) => {
                     user={user}
                     key={index}
                     text={task["task"]}
-                    dataHandler={dataHandler}
                   />
                 ))}
             </div>
@@ -85,7 +85,6 @@ const TasksDashBoard = ({user, dataHandler}) => {
                     user={user}
                     key={index}
                     text={task["task"]}
-                    dataHandler={dataHandler}
                   />
                 ))}
             </div>

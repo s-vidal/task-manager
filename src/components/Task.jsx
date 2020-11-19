@@ -1,8 +1,9 @@
 import React from "react";
 import "./Task.css";
 import EditTaskModal from "./EditTaskModal";
+import * as dataHandler from "../lib/DataHandler";
 
-const Task = ({collection, taskId, user, text, dataHandler}) => {
+const Task = ({collection, taskId, user, text}) => {
   return (
     <div className="task shadow rounded">
       <div className="row" style={{marginTop: "3.5rem"}}>
@@ -69,7 +70,6 @@ const Task = ({collection, taskId, user, text, dataHandler}) => {
             taskId={taskId}
             collection={collection}
             text={text}
-            dataHandler={dataHandler}
           />
         </div>
         <div className="col-1">

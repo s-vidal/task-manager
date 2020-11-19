@@ -1,6 +1,7 @@
 import React, {useState} from "react";
+import * as dataHandler from "../lib/DataHandler";
 
-const EditTaskModal = ({user, taskId, collection, text, dataHandler}) => {
+const EditTaskModal = ({user, taskId, collection, text}) => {
   const [newTask, setNewTask] = useState();
 
   return (
