@@ -31,16 +31,25 @@ const TaskModal = ({user}) => {
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div className="modal-body border-0 input-group">
-              <textarea
-                onChange={(e) => {
-                  setNewTask(e.target.value);
-                }}
-                value={newTask}
-                className="form-control"
-                placeholder="task.."
-                aria-label="With textarea"
-              ></textarea>
+            <div className="modal-body border-0 ml-3 mr-3">
+              <div className="row d-flex justify-content-center mb-5 mt-4">
+                <button className="btn btn-danger rounded-pill">Urgent</button>
+                <button className="btn btn-warning rounded-pill">
+                  Important
+                </button>
+                <button className="btn btn-info rounded-pill">Secondary</button>
+              </div>
+              <div className="row">
+                <textarea
+                  onChange={(e) => {
+                    setNewTask(e.target.value);
+                  }}
+                  value={newTask}
+                  className="form-control"
+                  placeholder="task.."
+                  aria-label="With textarea"
+                ></textarea>
+              </div>
             </div>
             <div className="modal-footer border-0 p-0">
               <button

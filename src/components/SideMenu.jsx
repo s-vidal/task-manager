@@ -32,14 +32,14 @@ const SideMenu = ({usersData, user, setUser}) => {
             </div>
           </div>
           <div className="col-9">
-            <h6 className="text-white mt-2">Sprint 3</h6>
+            <h5 className="text-white mt-2">Sprint 3</h5>
           </div>
         </div>
         <div className="row">
           <div className="col-12">
             <h4
               className="text-secondary"
-              style={{marginLeft: "30px", marginTop: "3em"}}
+              style={{marginLeft: "30px", marginTop: "3.5em"}}
             >
               Users
             </h4>

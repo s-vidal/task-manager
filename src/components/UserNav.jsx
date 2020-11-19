@@ -41,7 +41,7 @@ const UserNav = ({usersData, currentUser, setUser}) => {
                     </svg>
                   </div>
                   <div className="col-9">
-                    <p
+                    <h5
                       className={
                         currentUser === user["name"]
                           ? "text-dark m-0 mt-1"
@@ -49,7 +49,7 @@ const UserNav = ({usersData, currentUser, setUser}) => {
                       }
                     >
                       {user["name"]}
-                    </p>
+                    </h5>
                   </div>
                 </div>
               </a>
@@ -78,7 +78,7 @@ const UserNav = ({usersData, currentUser, setUser}) => {
                 </svg>
               </div>
               <div className="col-9">
-                <p>Add new user</p>
+                <h5>Add new user</h5>
               </div>
             </div>
           </a>

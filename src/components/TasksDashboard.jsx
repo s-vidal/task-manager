@@ -45,12 +45,22 @@ const TasksDashBoard = ({user}) => {
           <h2>Task-Manager</h2>
         </div>
         <div className="row mt-2">
-          <h5 className="text-secondary">Welcome {user}</h5>
+          <div className="col-8 p-0">
+            <h5 className="text-secondary">Welcome {user}</h5>
+          </div>
+          <div className="col-4 d-flex justify-content-end p-0">
+            <div className="urgent m-2 ml-3"></div>
+            <p>Urgent</p>
+            <div className="important m-2 ml-3"></div>
+            <p>Important</p>
+            <div className="secondary m-2 ml-3"></div>
+            <p>Secondary</p>
+          </div>
         </div>
         <div className="row mt-5">
           <div className="col-6 to-do text-center pr-5">
             <div className="row mb-4">
-              <div className="d-flex col-3 justify-content-start p-0">
+              <div className="d-flex col-2 justify-content-start p-0">
                 <h4 className="font-weight-bold">To Do</h4>
                 <h4 className="text-secondary ml-2">({tasks.length})</h4>
               </div>

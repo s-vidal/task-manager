@@ -19,3 +19,23 @@
 .tasks-container {
   padding: 0 10rem 10rem 10rem;
 }
+
+.urgent,
+.important,
+.secondary {
+  width: 10px;
+  height: 10px;
+  border-radius: 180px;
+}
+
+.urgent {
+  background-color: red;
+}
+
+.important {
+  background-color: orange;
+}
+
+.secondary {
+  background-color: rgba(0, 0, 255, 0.479);
+}

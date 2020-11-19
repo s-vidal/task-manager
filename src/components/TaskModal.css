@@ -6,3 +6,34 @@
   min-height: 3.5em;
   margin-top: 2em !important;
 }
+
+.btn-danger {
+  background-color: rgba(255, 0, 0, 0.363) !important;
+  border: none !important;
+  color: grey;
+  border-radius: 4px 0 0 4px !important;
+  width: 152px;
+  height: 40px;
+}
+
+.btn-warning {
+  background-color: rgba(255, 174, 0, 0.363) !important;
+  border: none !important;
+  color: grey;
+  border-radius: 0px !important;
+  width: 152px;
+}
+
+.btn-info {
+  background-color: rgba(0, 183, 255, 0.363) !important;
+  border: none !important;
+  color: grey;
+  border-radius: 0 4px 4px 0 !important;
+  width: 152px;
+}
+
+.btn-danger:hover,
+.btn-warning:hover,
+.btn-info:hover {
+  color: black !important;
+}
