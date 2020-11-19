@@ -7,20 +7,24 @@ const Dashboard = () => {
   const [usersData, setUsersData] = useState([]);
   const [user, setUser] = useState("ido");
 
-  useEffect(() => {
-    dataHandler.getDataSnapShot((data) => {
-      setUsersData(data);
-    });
-    const currentUser = localStorage.getItem("currentUser");
-    if (currentUser) {
-      setUser(currentUser);
-    }
-  }, [user]);
-
   const setCurrentUser = (user) => {
     localStorage.setItem("currentUser", user);
     setUser(user);
   };
+
+  useEffect(() => {
+    dataHandler.getDataSnapShot((data) => {
+      if (!user) {
+        setUser(data[0]["name"]);
+      }
+      setUsersData(data);
+    });
+
+    const currentUser = localStorage.getItem("currentUser");
+    if (currentUser) {
+      setUser(currentUser);
+    }
+  }, []);
 
   return (
     <div className="d-flex">
