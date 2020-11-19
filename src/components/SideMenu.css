@@ -10,6 +10,7 @@
 }
 
 .group-name {
-  background-color: rgb(201, 208, 255);
+  background-color: rgba(4, 4, 255, 0.198);
+  /* background-color: rgb(201, 208, 255); */
   padding: 0.5em;
 }

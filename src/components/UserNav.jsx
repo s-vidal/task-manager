@@ -19,13 +19,13 @@ const UserNav = ({usersData, currentUser, setUser}) => {
               }}
             >
               <a className="nav-link">
-                <div className="row">
+                <div className="row d-flex align-items-center">
                   <div className="col-3">
                     <svg
                       width="1.5em"
                       height="1.5em"
                       viewBox="0 0 16 16"
-                      className="bi bi-person-circle text-secondary"
+                      className="bi bi-person-circle text-secondary mt-1"
                       fill="currentColor"
                       xmlns="http://www.w3.org/2000/svg"
                     >
@@ -44,8 +44,8 @@ const UserNav = ({usersData, currentUser, setUser}) => {
                     <p
                       className={
                         currentUser === user["name"]
-                          ? "text-white m-0"
-                          : "text-white  m-0"
+                          ? "text-dark m-0 mt-1"
+                          : "text-white m-0 mt-1"
                       }
                     >
                       {user["name"]}
@@ -55,7 +55,7 @@ const UserNav = ({usersData, currentUser, setUser}) => {
               </a>
             </li>
           ))}
-        <li className=" nav-item user-item rounded align-items-center cursor-pointer mt-4">
+        <li className=" nav-item user-item rounded align-items-center cursor-pointer mt-5">
           <a className="nav-link text-white">
             <div className="row mt-1">
               <div className="col-3">
