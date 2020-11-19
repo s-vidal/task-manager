@@ -6,7 +6,24 @@ const SideMenu = ({usersData, user, setUser}) => {
   return (
     <div className="menu">
       <div className="container">
-        <div className="row" style={{marginTop: "15rem"}}>
+        <div className="row">
+          {/* <div className="col-12 mt-5">
+            <h4 className="group text-secondary" style={{marginLeft: "30px"}}>
+              Group
+            </h4>
+          </div> */}
+        </div>
+        <div className="row mt-5">
+          <div className="col-12">
+            <h5
+              className="group-name text-center"
+              style={{marginLeft: "30px", marginRight: "30px"}}
+            >
+              Sprint 3
+            </h5>
+          </div>
+        </div>
+        <div className="row" style={{marginTop: "9em"}}>
           <div className="col-12">
             <UserNav
               usersData={usersData}

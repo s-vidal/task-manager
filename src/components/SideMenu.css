@@ -3,3 +3,13 @@
   min-height: 100vh;
   width: 15vw;
 }
+
+.group {
+  background-color: rgb(170, 181, 255);
+  padding: 0.5em;
+}
+
+.group-name {
+  background-color: rgb(201, 208, 255);
+  padding: 0.5em;
+}

@@ -6,6 +6,10 @@
   color: white;
 }
 
+.user-item:hover {
+  background-color: rgba(4, 4, 255, 0.335);
+}
+
 .selected-user-item {
   margin: 0.2rem;
   width: 80%;
