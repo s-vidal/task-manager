@@ -75,7 +75,6 @@ const Task = ({collection, taskId, user, text}) => {
         <div className="col-1">
           <svg
             onClick={() => {
-              console.log(user);
               dataHandler.deleteTaskById(user, taskId, collection);
             }}
             width="1.5em"

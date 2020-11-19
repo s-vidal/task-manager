@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import "./TasksDashboard.css";
 import Task from "./Task";
 import TaskModal from "./TaskModal";
+import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
 import * as dataHandler from "../lib/DataHandler";
 
 const TasksDashBoard = ({user}) => {
@@ -48,6 +49,7 @@ const TasksDashBoard = ({user}) => {
             <div className="row mb-4">
               <div className="d-flex col-3 justify-content-start p-0">
                 <h4 className="font-weight-bold">To Do</h4>
+                <h4 className="text-secondary ml-2">({tasks.length})</h4>
               </div>
               <div className="col-6">
                 <button
@@ -77,6 +79,7 @@ const TasksDashBoard = ({user}) => {
           <div className="col-6 done">
             <div className="row mb-4">
               <h4 className="font-weight-bold">Done</h4>
+              <h4 className="text-secondary ml-2">({doneTasks.length})</h4>
             </div>
             <div className="row">
               {doneTasks.length > 0 &&
