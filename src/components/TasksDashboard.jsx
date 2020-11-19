@@ -8,14 +8,17 @@ import * as dataHandler from "../lib/DataHandler";
 const TasksDashBoard = ({user}) => {
   const [tasks, setTasks] = useState([]);
   const [doneTasks, setDoneTasks] = useState([]);
+  const [showLoader, setShowLoader] = useState(false);
 
   useEffect(() => {
     if (user) {
+      setShowLoader(true);
       const unsubscribeTask = dataHandler.getUserTasksSnapshot(
         user,
         "to-do",
         (data) => {
           console.log(data);
+          setShowLoader(false);
           setTasks(data);
         }
       );
@@ -64,7 +67,15 @@ const TasksDashBoard = ({user}) => {
               <TaskModal user={user} />
             </div>
             <div className="row">
+              {showLoader && (
+                <div className="col-12 d-flex justify-content-end mt-5">
+                  <div className="spinner-border mt-5" role="status">
+                    <span className="sr-only">Loading...</span>
+                  </div>
+                </div>
+              )}
               {tasks.length > 0 &&
+                !showLoader &&
                 tasks.map((task, index) => (
                   <Task
                     collection="to-do"
@@ -83,6 +94,7 @@ const TasksDashBoard = ({user}) => {
             </div>
             <div className="row">
               {doneTasks.length > 0 &&
+                !showLoader &&
                 doneTasks.map((task, index) => (
                   <Task
                     collection="done"

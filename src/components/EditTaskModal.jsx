@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import "./EditTaskModal.css";
 import * as dataHandler from "../lib/DataHandler";
 
 const EditTaskModal = ({user, taskId, collection, text}) => {
