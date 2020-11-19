@@ -12,7 +12,7 @@ const Task = ({collection, taskId, user, text}) => {
           {text && <h5>{text}</h5>}
         </div>
         <div className="col-1">
-          {collection == "done" && (
+          {collection === "done" && (
             <svg
               onClick={() => {
                 dataHandler.markDoneTaskAsTodo(user, taskId, text);
@@ -30,7 +30,7 @@ const Task = ({collection, taskId, user, text}) => {
               />
             </svg>
           )}
-          {collection == "to-do" && (
+          {collection === "to-do" && (
             <svg
               onClick={() => {
                 dataHandler.markTaskAsDone(user, taskId, text);

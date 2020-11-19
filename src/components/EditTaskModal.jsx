@@ -1,8 +1,12 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import * as dataHandler from "../lib/DataHandler";
 
 const EditTaskModal = ({user, taskId, collection, text}) => {
-  const [newTask, setNewTask] = useState();
+  const [newTask, setNewTask] = useState(text);
+
+  useEffect(() => {
+    setNewTask(text);
+  }, [text]);
 
   return (
     <>
@@ -19,8 +23,9 @@ const EditTaskModal = ({user, taskId, collection, text}) => {
           <div className="modal-content rounded shadow">
             <div className="modal-header border-0">
               <h5 className="modal-title" id="exampleModalLabel">
-                Edit Task: {text}
+                Edit Task:
               </h5>
+              <h5 className="modal-title ml-3">{text}</h5>
               <button
                 onClick={() => {
                   setNewTask("");
