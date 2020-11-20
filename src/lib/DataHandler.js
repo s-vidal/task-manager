@@ -28,11 +28,16 @@ export const getUserTasksSnapshot = (user, collection = "to-do", callBack) => {
   return unsubscribe;
 };
 
-export const addTaskByUser = (user, task, collection = "to-do") => {
+export const addTaskByUser = (
+  user,
+  task,
+  taskColor = "purple",
+  collection = "to-do"
+) => {
   usersCollection
     .doc(user)
     .collection(collection)
-    .add({task: task})
+    .add({task: task, taskColor: taskColor})
     .then(function (docRef) {
       console.log("Document written with ID: ", docRef.id);
       return docRef;
@@ -53,23 +58,34 @@ export const deleteTaskById = (user, taskId, collection = "to-do") => {
     });
 };
 
-export const markTaskAsDone = (user, taskId, taskText) => {
+export const markTaskAsDone = (user, taskId, taskText, taskColor) => {
   deleteTaskById(user, taskId, "to-do");
-  addTaskByUser(user, taskText, "done");
+  addTaskByUser(user, taskText, taskColor, "done");
 };
 
-export const markDoneTaskAsTodo = (user, taskId, taskText) => {
+export const markDoneTaskAsTodo = (user, taskId, taskText, taskColor) => {
   deleteTaskById(user, taskId, "done");
-  addTaskByUser(user, taskText, "to-do");
+  addTaskByUser(user, taskText, taskColor, "to-do");
 };
 
-export const editTaskById = (user, taskId, collection = "to-do", newText) => {
+export const editTaskById = (
+  user,
+  taskId,
+  newText,
+  taskColor,
+  collection = "to-do"
+) => {
+  let color = taskColor;
+  if (!color) {
+    color = "purple";
+  }
   usersCollection
     .doc(user)
     .collection(collection)
     .doc(taskId)
     .update({
       task: newText,
+      taskColor: color,
     })
     .then(function () {
       console.log("Document successfully updated!");

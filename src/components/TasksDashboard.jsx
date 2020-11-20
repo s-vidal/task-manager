@@ -93,6 +93,7 @@ const TasksDashBoard = ({user}) => {
                     user={user}
                     key={index}
                     text={task["task"]}
+                    taskColor={task["taskColor"] ? task["taskColor"] : "purple"}
                   />
                 ))}
             </div>
@@ -112,6 +113,9 @@ const TasksDashBoard = ({user}) => {
                     user={user}
                     key={index}
                     text={task["task"]}
+                    taskColor={
+                      task["taskColor"] ? task["taskColor"] : undefined
+                    }
                   />
                 ))}
             </div>

@@ -4,6 +4,14 @@ import * as dataHandler from "../lib/DataHandler";
 
 const TaskModal = ({user}) => {
   const [newTask, setNewTask] = useState("");
+  const [taskColor, setTaskColor] = useState("purple");
+
+  const setBtnClass = (color) => {
+    if (color === taskColor) {
+      return `btn btn-${color} btn-${color}-selected rounded-pill`;
+    }
+    return `btn btn-${color} rounded-pill`;
+  };
 
   return (
     <>
@@ -23,6 +31,9 @@ const TaskModal = ({user}) => {
                 New Task:
               </h5>
               <button
+                onClick={() => {
+                  setTaskColor("purple");
+                }}
                 type="button"
                 className="close"
                 data-dismiss="modal"
@@ -33,11 +44,30 @@ const TaskModal = ({user}) => {
             </div>
             <div className="modal-body border-0 ml-3 mr-3">
               <div className="row d-flex justify-content-center mb-5 mt-4">
-                <button className="btn btn-danger rounded-pill">Urgent</button>
-                <button className="btn btn-warning rounded-pill">
+                <button
+                  className={setBtnClass("red")}
+                  onClick={() => {
+                    setTaskColor("red");
+                  }}
+                >
+                  Urgent
+                </button>
+                <button
+                  className={setBtnClass("orange")}
+                  onClick={() => {
+                    setTaskColor("orange");
+                  }}
+                >
                   Important
                 </button>
-                <button className="btn btn-info rounded-pill">Secondary</button>
+                <button
+                  className={setBtnClass("purple")}
+                  onClick={() => {
+                    setTaskColor("purple");
+                  }}
+                >
+                  Secondary
+                </button>
               </div>
               <div className="row">
                 <textarea
@@ -55,8 +85,9 @@ const TaskModal = ({user}) => {
               <button
                 className="btn btn-secondary add-task-btn m-0"
                 onClick={() => {
-                  dataHandler.addTaskByUser(user, newTask);
+                  dataHandler.addTaskByUser(user, newTask, taskColor);
                   setNewTask("");
+                  setTaskColor("purple");
                 }}
                 type="button"
                 data-dismiss="modal"
