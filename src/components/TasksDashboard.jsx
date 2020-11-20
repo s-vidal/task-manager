@@ -10,6 +10,12 @@ const TasksDashBoard = ({user}) => {
   const [doneTasks, setDoneTasks] = useState([]);
   const [showLoader, setShowLoader] = useState(false);
 
+  const getCountTasksByColor = (color) => {
+    const task = tasks.filter((task) => task["taskColor"] === color);
+    const doneRed = doneTasks.filter((task) => task["taskColor"] === color);
+    return task.length + doneRed.length;
+  };
+
   useEffect(() => {
     if (user) {
       setShowLoader(true);
@@ -50,11 +56,14 @@ const TasksDashBoard = ({user}) => {
           </div>
           <div className="col-4 d-flex justify-content-end p-0">
             <div className="urgent m-2 ml-3"></div>
-            <p>Urgent</p>
+            <p className="mr-1">{getCountTasksByColor("red")}</p>
+            <p>- Urgent</p>
             <div className="important m-2 ml-3"></div>
-            <p>Important</p>
+            <p className="mr-1">{getCountTasksByColor("orange")}</p>
+            <p>- Important</p>
             <div className="secondary m-2 ml-3"></div>
-            <p>Secondary</p>
+            <p className="mr-1">{getCountTasksByColor("purple")}</p>
+            <p>- Secondary</p>
           </div>
         </div>
         <div className="row mt-5">
