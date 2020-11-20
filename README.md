@@ -8,6 +8,6 @@ Task Manager App with realtime listeners for add, edit and delete events using F
 
 **App Screenshots**
 
-![alt text](./demo/task-manager-1.png)
+![alt text](./demo/task-manager-3.png)
 
-![alt text](./demo/task-manager-2.png)
+![alt text](./demo/task-manager-4.png)
