@@ -34,10 +34,14 @@ export const addTaskByUser = (
   taskColor = "purple",
   collection = "to-do"
 ) => {
+  let color = taskColor;
+  if (!color) {
+    color = "purple";
+  }
   usersCollection
     .doc(user)
     .collection(collection)
-    .add({task: task, taskColor: taskColor})
+    .add({task: task, taskColor: color})
     .then(function (docRef) {
       console.log("Document written with ID: ", docRef.id);
       return docRef;

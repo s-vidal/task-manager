@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import "./TasksDashboard.css";
 import Task from "./Task";
 import TaskModal from "./TaskModal";
-import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
+// import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
 import * as dataHandler from "../lib/DataHandler";
 
 const TasksDashBoard = ({user}) => {
@@ -10,7 +10,7 @@ const TasksDashBoard = ({user}) => {
   const [doneTasks, setDoneTasks] = useState([]);
   const [showLoader, setShowLoader] = useState(false);
 
-  const getCountTasksByColor = (color) => {
+  const getTasksCountByColor = (color) => {
     const task = tasks.filter((task) => task["taskColor"] === color);
     const doneRed = doneTasks.filter((task) => task["taskColor"] === color);
     return task.length + doneRed.length;
@@ -28,7 +28,6 @@ const TasksDashBoard = ({user}) => {
           setTasks(data);
         }
       );
-
       const unsubscribeDone = dataHandler.getUserTasksSnapshot(
         user,
         "done",
@@ -56,14 +55,14 @@ const TasksDashBoard = ({user}) => {
           </div>
           <div className="col-4 d-flex justify-content-end p-0">
             <div className="urgent m-2 ml-3"></div>
-            <p className="mr-1">{getCountTasksByColor("red")}</p>
-            <p>- Urgent</p>
+            <p className="mr-1">{getTasksCountByColor("red")}</p>
+            <p>Urgent</p>
             <div className="important m-2 ml-3"></div>
-            <p className="mr-1">{getCountTasksByColor("orange")}</p>
-            <p>- Important</p>
+            <p className="mr-1">{getTasksCountByColor("orange")}</p>
+            <p>Important</p>
             <div className="secondary m-2 ml-3"></div>
-            <p className="mr-1">{getCountTasksByColor("purple")}</p>
-            <p>- Secondary</p>
+            <p className="mr-1">{getTasksCountByColor("purple")}</p>
+            <p>Secondary</p>
           </div>
         </div>
         <div className="row mt-5">

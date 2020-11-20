@@ -1,17 +1,11 @@
 import React, {useState} from "react";
 import "./TaskModal.css";
+import SelectColorButtons from "./SelectColorButtons";
 import * as dataHandler from "../lib/DataHandler";
 
 const TaskModal = ({user}) => {
   const [newTask, setNewTask] = useState("");
   const [taskColor, setTaskColor] = useState("purple");
-
-  const setBtnClass = (color) => {
-    if (color === taskColor) {
-      return `btn btn-${color} btn-${color}-selected rounded-pill`;
-    }
-    return `btn btn-${color} rounded-pill`;
-  };
 
   return (
     <>
@@ -43,32 +37,10 @@ const TaskModal = ({user}) => {
               </button>
             </div>
             <div className="modal-body border-0 ml-3 mr-3">
-              <div className="row d-flex justify-content-center mb-5 mt-4">
-                <button
-                  className={setBtnClass("red")}
-                  onClick={() => {
-                    setTaskColor("red");
-                  }}
-                >
-                  Urgent
-                </button>
-                <button
-                  className={setBtnClass("orange")}
-                  onClick={() => {
-                    setTaskColor("orange");
-                  }}
-                >
-                  Important
-                </button>
-                <button
-                  className={setBtnClass("purple")}
-                  onClick={() => {
-                    setTaskColor("purple");
-                  }}
-                >
-                  Secondary
-                </button>
-              </div>
+              <SelectColorButtons
+                taskColor={taskColor}
+                setTaskColor={setTaskColor}
+              />
               <div className="row">
                 <textarea
                   onChange={(e) => {
