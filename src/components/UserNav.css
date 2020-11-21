@@ -19,6 +19,7 @@
 }
 
 .selected-user-item {
+  transition-duration: 0.5s;
   margin: 0 0 0 3em;
   border-radius: 4px 0 0 4px !important;
   width: 100%;

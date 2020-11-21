@@ -36,7 +36,7 @@ const TaskModal = ({user}) => {
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div className="modal-body border-0 ml-3 mr-3">
+            <div className="modal-body  border-0 ml-3 mr-3">
               <SelectColorButtons
                 taskColor={taskColor}
                 setTaskColor={setTaskColor}
@@ -55,6 +55,7 @@ const TaskModal = ({user}) => {
             </div>
             <div className="modal-footer border-0 p-0">
               <button
+                disabled={newTask.length > 0 ? false : true}
                 className="btn btn-secondary add-task-btn m-0"
                 onClick={() => {
                   dataHandler.addTaskByUser(user, newTask, taskColor);

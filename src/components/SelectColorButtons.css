@@ -53,5 +53,6 @@
 .btn-orange:hover,
 .btn-red:hover,
 .btn-purple:hover {
-  color: black !important;
+  width: 35px;
+  height: 35px;
 }
