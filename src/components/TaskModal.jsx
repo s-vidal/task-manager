@@ -26,6 +26,7 @@ const TaskModal = ({user}) => {
               </h5>
               <button
                 onClick={() => {
+                  setNewTask("");
                   setTaskColor("purple");
                 }}
                 type="button"
