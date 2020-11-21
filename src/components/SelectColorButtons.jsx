@@ -10,31 +10,34 @@ const SelectColorButtons = ({taskColor, setTaskColor}) => {
   };
 
   return (
-    <div className="row d-flex justify-content-center mb-5 mt-4">
-      <button
-        className={setBtnClass("red")}
-        onClick={() => {
-          setTaskColor("red");
-        }}
-      >
-        Urgent
-      </button>
-      <button
-        className={setBtnClass("orange")}
-        onClick={() => {
-          setTaskColor("orange");
-        }}
-      >
-        Important
-      </button>
-      <button
-        className={setBtnClass("purple")}
-        onClick={() => {
-          setTaskColor("purple");
-        }}
-      >
-        Secondary
-      </button>
+    <div className="row mb-5 mt-4">
+      <div className="col-4 text-center">
+        <p> Urgent</p>
+        <button
+          className={setBtnClass("red")}
+          onClick={() => {
+            setTaskColor("red");
+          }}
+        ></button>
+      </div>
+      <div className="col-4 text-center">
+        <p> Important</p>
+        <button
+          className={setBtnClass("orange")}
+          onClick={() => {
+            setTaskColor("orange");
+          }}
+        ></button>
+      </div>
+      <div className="col-4 text-center">
+        <p> Secondary</p>
+        <button
+          className={setBtnClass("purple")}
+          onClick={() => {
+            setTaskColor("purple");
+          }}
+        ></button>
+      </div>
     </div>
   );
 };

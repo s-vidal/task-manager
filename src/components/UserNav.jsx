@@ -11,8 +11,8 @@ const UserNav = ({usersData, currentUser, setUser}) => {
               key={index}
               className={
                 currentUser === user["name"]
-                  ? "nav-item selected-user-item rounded align-items-center cursor-pointer"
-                  : "nav-item user-item rounded align-items-center cursor-pointer"
+                  ? "nav-item selected-user-item align-items-center cursor-pointer"
+                  : "nav-item user-item align-items-center cursor-pointer"
               }
               onClick={() => {
                 setUser(user["name"]);
@@ -55,7 +55,9 @@ const UserNav = ({usersData, currentUser, setUser}) => {
               </a>
             </li>
           ))}
-        <li className=" nav-item user-item rounded align-items-center cursor-pointer mt-5">
+      </ul>
+      <ul className="nav justify-content-center">
+        <li className="nav-item add-user rounded align-items-center cursor-pointer mt-5">
           <a className="nav-link text-white">
             <div className="row mt-1">
               <div className="col-3">
