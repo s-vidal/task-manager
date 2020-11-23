@@ -3,14 +3,27 @@ import "./Task.css";
 import EditTaskModal from "./EditTaskModal";
 import * as dataHandler from "../lib/DataHandler";
 
-const Task = ({collection, taskId, user, text, taskColor}) => {
+const Task = ({
+  collection,
+  taskId,
+  user,
+  text,
+  taskColor,
+  provided,
+  innerRef,
+}) => {
   const getTaskClass = () => {
     const taskColorClass = `border-${taskColor}`;
     return `task shadow rounded ${taskColorClass}`;
   };
 
   return (
-    <div className={getTaskClass()}>
+    <div
+      className={getTaskClass()}
+      {...provided.draggableProps}
+      {...provided.dragHandleProps}
+      ref={innerRef}
+    >
       <div className="row" style={{marginTop: "3.5rem"}}>
         <div className="offset-1"></div>
         <div className="col-7 d-flex justify-content-start">

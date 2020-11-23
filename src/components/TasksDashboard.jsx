@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import "./TasksDashboard.css";
 import Task from "./Task";
 import TaskModal from "./TaskModal";
-// import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
+import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
 import * as dataHandler from "../lib/DataHandler";
 
 const TasksDashBoard = ({user}) => {
@@ -65,70 +65,125 @@ const TasksDashBoard = ({user}) => {
             <p>Secondary</p>
           </div>
         </div>
-        <div className="row mt-5">
-          <div className="col-6 to-do text-center pr-5">
-            <div className="row mb-4">
-              <div className="d-flex col-2 justify-content-start p-0">
-                <h4 className="font-weight-bold">To Do</h4>
-                <h4 className="text-secondary ml-2">({tasks.length})</h4>
-              </div>
-              <div className="col-6">
-                <button
-                  type="button"
-                  className=" btn custom-btn rounded-pill"
-                  data-toggle="modal"
-                  data-target="#exampleModal"
+        <DragDropContext
+          onDragEnd={(result) => {
+            console.log(result.destination, result.source, result.draggableId);
+            // dataHandler.moveTask(
+            //   result.draggableId,
+            //   result.source,
+            //   result.destination
+            // );
+          }}
+        >
+          <div className="row mt-5">
+            <Droppable droppableId={"to-do"}>
+              {(provided) => (
+                <div
+                  className="col-6 to-do text-center pr-5"
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
                 >
-                  + New Task
-                </button>
-              </div>
-              <TaskModal user={user} />
-            </div>
-            <div className="row">
-              {showLoader && (
-                <div className="col-12 d-flex justify-content-end mt-5">
-                  <div className="spinner-border mt-5" role="status">
-                    <span className="sr-only">Loading...</span>
+                  <div className="row mb-4">
+                    <div className="d-flex col-2 justify-content-start p-0">
+                      <h4 className="font-weight-bold">To Do</h4>
+                      <h4 className="text-secondary ml-2">({tasks.length})</h4>
+                    </div>
+                    <div className="col-6">
+                      <button
+                        type="button"
+                        className=" btn custom-btn rounded-pill"
+                        data-toggle="modal"
+                        data-target="#exampleModal"
+                      >
+                        + New Task
+                      </button>
+                    </div>
+                    <TaskModal user={user} />
+                  </div>
+                  <div className="row">
+                    {showLoader && (
+                      <div className="col-12 d-flex justify-content-end mt-5">
+                        <div className="spinner-border mt-5" role="status">
+                          <span className="sr-only">Loading...</span>
+                        </div>
+                      </div>
+                    )}
+                    {tasks.length > 0 &&
+                      !showLoader &&
+                      tasks.map((task, index) => (
+                        <Draggable
+                          key={index}
+                          draggableId={task["id"]}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <Task
+                              innerRef={provided.innerRef}
+                              provided={provided}
+                              collection="to-do"
+                              taskId={task["id"]}
+                              user={user}
+                              key={index}
+                              text={task["task"]}
+                              taskColor={
+                                task["taskColor"] ? task["taskColor"] : "purple"
+                              }
+                            />
+                          )}
+                        </Draggable>
+                      ))}
+                    {provided.placeholder}
                   </div>
                 </div>
               )}
-              {tasks.length > 0 &&
-                !showLoader &&
-                tasks.map((task, index) => (
-                  <Task
-                    collection="to-do"
-                    taskId={task["id"]}
-                    user={user}
-                    key={index}
-                    text={task["task"]}
-                    taskColor={task["taskColor"] ? task["taskColor"] : "purple"}
-                  />
-                ))}
-            </div>
+            </Droppable>
+            <Droppable droppableId={"done"}>
+              {(provided) => (
+                <div
+                  className="col-6 done"
+                  ref={provided.innerRef}
+                  {...provided.droppableProps}
+                >
+                  <div className="row mb-4">
+                    <h4 className="font-weight-bold">Done</h4>
+                    <h4 className="text-secondary ml-2">
+                      ({doneTasks.length})
+                    </h4>
+                  </div>
+                  <div className="row">
+                    {doneTasks.length > 0 &&
+                      !showLoader &&
+                      doneTasks.map((task, index) => (
+                        <Draggable
+                          key={index}
+                          draggableId={task["id"]}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <Task
+                              innerRef={provided.innerRef}
+                              provided={provided}
+                              collection="done"
+                              taskId={task["id"]}
+                              user={user}
+                              key={index}
+                              text={task["task"]}
+                              taskColor={
+                                task["taskColor"]
+                                  ? task["taskColor"]
+                                  : undefined
+                              }
+                            />
+                          )}
+                        </Draggable>
+                      ))}
+                    {provided.placeholder}
+                  </div>
+                </div>
+              )}
+            </Droppable>
           </div>
-          <div className="col-6 done">
-            <div className="row mb-4">
-              <h4 className="font-weight-bold">Done</h4>
-              <h4 className="text-secondary ml-2">({doneTasks.length})</h4>
-            </div>
-            <div className="row">
-              {doneTasks.length > 0 &&
-                !showLoader &&
-                doneTasks.map((task, index) => (
-                  <Task
-                    collection="done"
-                    taskId={task["id"]}
-                    user={user}
-                    key={index}
-                    text={task["task"]}
-                    taskColor={
-                      task["taskColor"] ? task["taskColor"] : undefined
-                    }
-                  />
-                ))}
-            </div>
-          </div>
-        </div>
+        </DragDropContext>
       </div>
     </div>
   );

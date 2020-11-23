@@ -17,6 +17,7 @@ export const getUserTasksSnapshot = (user, collection = "to-do", callBack) => {
   const unsubscribe = usersCollection
     .doc(user)
     .collection(collection)
+    // .orderBy("index")
     .onSnapshot((update) => {
       const data = update.docs.map((doc) => {
         const todo = doc.data();
@@ -97,4 +98,21 @@ export const editTaskById = (
     .catch(function (error) {
       console.error("Error updating document: ", error);
     });
+
+  // export const moveTask = (user, taskId, source, destination) => {
+  //   const sourceIndex = source["index"];
+  //   const sourceCollection = source["droppableId"];
+  //   deleteTaskById(user, taskId, sourceCollection);
+  //   for (let i = sourceIndex + 1; i < totalTasks; i++) {
+  //     // getTaskIdByIndex
+  //     //updateTaskById(index = index - 1)
+  //   }
+  //   const destinationIndex = destination["index"];
+  //   const destinationCollection = destination["droppableId"];
+  //   // addTaskByUser(user, destinationIndex)
+  //   for (let i = sourceIndex; i < totalTasks; i++) {
+  //     // getTaskIdByIndex
+  //     //updateTaskById(index = index + 1)
+  //   }
+  // };
 };
